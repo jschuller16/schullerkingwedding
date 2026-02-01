@@ -1,0 +1,200 @@
+/**
+ * ============================================
+ * TYPOGRAPHY
+ * Didot for headlines, Helvetica for body
+ * ============================================
+ */
+
+/* ----------------------------------------
+ * BASE TYPOGRAPHY
+ * ---------------------------------------- */
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--font-regular);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
+}
+
+/* ----------------------------------------
+ * HEADINGS - Didot / Playfair Display
+ * ---------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: var(--font-regular);
+    letter-spacing: var(--tracking-tight);
+    color: var(--text-primary);
+}
+
+h1 {
+    font-size: var(--text-hero);
+    line-height: 0.95;
+}
+
+h2 {
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+}
+
+h3 {
+    font-size: var(--text-3xl);
+    line-height: var(--leading-snug);
+}
+
+h4 {
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+}
+
+h5 {
+    font-size: var(--text-xl);
+}
+
+h6 {
+    font-size: var(--text-lg);
+}
+
+/* ----------------------------------------
+ * BODY TEXT
+ * ---------------------------------------- */
+
+p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+}
+
+/* Lead paragraph - larger introductory text */
+.text-lead {
+    font-size: var(--text-xl);
+    line-height: var(--leading-relaxed);
+    color: var(--text-primary);
+}
+
+@media (min-width: 768px) {
+    .text-lead {
+        font-size: var(--text-2xl);
+    }
+}
+
+/* Small text */
+.text-small {
+    font-size: var(--text-sm);
+}
+
+.text-xs {
+    font-size: var(--text-xs);
+}
+
+/* ----------------------------------------
+ * SPECIAL TEXT TREATMENTS
+ * ---------------------------------------- */
+
+/* Uppercase utility labels */
+.text-label {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-widest);
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Display italic for emphasis */
+.text-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+}
+
+/* Helvetica Light for refined moments */
+.text-light {
+    font-family: var(--font-body);
+    font-weight: var(--font-light);
+}
+
+/* ----------------------------------------
+ * LINKS
+ * ---------------------------------------- */
+
+a {
+    color: var(--color-link);
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-link-hover);
+}
+
+/* Underlined link style */
+.link-underline {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+.link-underline:hover {
+    text-decoration-thickness: 2px;
+}
+
+/* ----------------------------------------
+ * BLOCKQUOTES
+ * ---------------------------------------- */
+
+blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--text-2xl);
+    line-height: var(--leading-snug);
+    color: var(--text-primary);
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    blockquote {
+        font-size: var(--text-3xl);
+    }
+}
+
+blockquote p {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    max-width: none;
+}
+
+/* ----------------------------------------
+ * ADDRESS
+ * ---------------------------------------- */
+
+address {
+    font-style: normal;
+    line-height: var(--leading-relaxed);
+}
+
+/* ----------------------------------------
+ * TIME
+ * ---------------------------------------- */
+
+time {
+    font-family: var(--font-body);
+    letter-spacing: var(--tracking-wide);
+}
+
+/* ----------------------------------------
+ * TEXT COLORS
+ * ---------------------------------------- */
+
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-accent { color: var(--text-accent); }
+
+/* ----------------------------------------
+ * TEXT ALIGNMENT
+ * ---------------------------------------- */
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
