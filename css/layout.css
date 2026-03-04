@@ -385,56 +385,39 @@
  * ---------------------------------------- */
 
 .story {
+    /* Lingers near-black before easing into eggplant — no break with hero */
     background: linear-gradient(180deg,
         var(--bg-primary) 0%,
-        var(--color-deep-eggplant) 40%,
-        var(--bg-secondary) 100%);
+        var(--bg-primary) 30%,
+        var(--color-deep-eggplant) 100%);
     position: relative;
     overflow: hidden;
 }
 
-.story__grid {
-    display: grid;
-    gap: var(--space-8);
-    margin-bottom: var(--space-10);
+.story__single {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-10);
 }
 
-@media (min-width: 768px) {
-    .story__grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-10);
-        align-items: center;
-    }
-    
-    .story__image--2 {
-        order: -1;
-    }
+.story__image {
+    width: 100%;
+    max-width: 720px;
 }
 
-@media (min-width: 1024px) {
-    .story__grid {
-        grid-template-columns: 1fr 1.2fr 1fr;
-    }
-    
-    .story__image--2 {
-        order: 0;
-    }
+.story__photo {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
 }
 
-.story__content {
-    max-width: 600px;
-}
-
-@media (min-width: 768px) {
-    .story__content {
-        grid-column: span 2;
-    }
-}
-
-@media (min-width: 1024px) {
-    .story__content {
-        grid-column: auto;
-    }
+.story__quote {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
 }
 
 .story__lead {
@@ -443,7 +426,8 @@
     font-style: italic;
     line-height: var(--leading-relaxed);
     color: var(--text-primary);
-    margin-bottom: var(--space-6);
+    margin-bottom: 0;
+    max-width: none;
 }
 
 @media (min-width: 768px) {
@@ -452,33 +436,66 @@
     }
 }
 
-.story__text {
-    margin-bottom: var(--space-5);
+/* =============================================
+   DRESS CODE SECTION
+   ============================================= */
+
+.dresscode {
+    /* Stays in eggplant range — dips near-black mid-section for depth */
+    background: linear-gradient(180deg,
+        var(--color-deep-eggplant) 0%,
+        var(--bg-primary) 50%,
+        var(--color-deep-eggplant) 100%);
+    padding: var(--space-10) 0;
 }
 
-.story__text:last-of-type {
-    margin-bottom: 0;
+.dresscode .section__header {
+    margin-bottom: var(--space-10);
 }
 
-.story__quote {
+.dresscode__image {
+    width: 100%;
+    margin: 0 auto var(--space-2);
+}
+
+.dresscode__attire {
+    text-align: center;
     max-width: var(--container-narrow);
     margin: 0 auto;
+}
+
+.dresscode__attire-title {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: var(--space-4);
+}
+
+.dresscode__attire-note {
+    font-size: var(--text-xl);
     text-align: center;
-    padding: var(--space-8) 0;
-    border-top: 1px solid var(--border-subtle);
-    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    line-height: var(--leading-relaxed);
 }
 
 /* Image placeholder */
 .image-placeholder {
     aspect-ratio: 3 / 4;
-    background: linear-gradient(135deg, 
-        var(--color-deep-aubergine) 0%, 
+    background: linear-gradient(135deg,
+        var(--color-deep-aubergine) 0%,
         var(--color-deep-eggplant) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid var(--border-subtle);
+}
+
+/* Wide banner variant — must come after base to override aspect-ratio */
+.image-placeholder.image-placeholder--wide {
+    aspect-ratio: 5 / 1;
+    max-height: 200px;
 }
 
 .image-placeholder__text {
@@ -490,16 +507,24 @@
     color: var(--text-muted);
 }
 
+.dresscode__photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
 /* ----------------------------------------
  * DETAILS SECTION (The Day - Now Section 01)
  * First section after hero, transitions from hero gradient
  * ---------------------------------------- */
 
 .details {
+    /* Starts and ends at eggplant — brief aubergine peak mid-section */
     background: linear-gradient(180deg,
-        var(--bg-primary) 0%,
-        var(--bg-secondary) 50%,
-        var(--bg-primary) 100%);
+        var(--color-deep-eggplant) 0%,
+        var(--color-deep-aubergine) 50%,
+        var(--color-deep-eggplant) 100%);
 }
 
 .details__venue {
@@ -521,40 +546,65 @@
 
 /* Timeline */
 .details__timeline {
-    max-width: var(--container-narrow);
+    max-width: 560px;
     margin: 0 auto var(--space-12);
+    position: relative;
+}
+
+/* Vertical connecting line runs down the center column */
+.details__timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    top: 14px;
+    bottom: 14px;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        var(--border-subtle) 8%,
+        var(--border-subtle) 92%,
+        transparent 100%);
 }
 
 .timeline__item {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: var(--space-6);
-    padding: var(--space-6) 0;
-    border-bottom: 1px solid var(--border-subtle);
+    grid-template-columns: 1fr 16px 1fr;
+    align-items: center;
+    padding: var(--space-4) 0;
+    border-bottom: none;
 }
 
-.timeline__item:last-child {
-    border-bottom: none;
+/* Dot in the center column */
+.timeline__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--color-orchid-purple);
+    box-shadow: 0 0 8px rgba(166, 123, 190, 0.45);
+    justify-self: center;
+    position: relative;
+    z-index: 1;
 }
 
 .timeline__time {
     font-family: var(--font-body);
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     font-weight: var(--font-light);
     letter-spacing: var(--tracking-wide);
     color: var(--color-orchid-purple);
-    min-width: 80px;
+    text-align: right;
+    padding-right: var(--space-5);
+}
+
+.timeline__content {
+    padding-left: var(--space-5);
 }
 
 .timeline__title {
     font-family: var(--font-display);
-    font-size: var(--text-xl);
-    margin-bottom: var(--space-2);
-}
-
-.timeline__desc {
-    font-size: var(--text-sm);
-    color: var(--text-secondary);
+    font-size: var(--text-2xl);
+    margin-bottom: 0;
 }
 
 /* Dress code */
@@ -596,11 +646,11 @@
  * ---------------------------------------- */
 
 .travel {
+    /* Dips near-black mid-section, stays eggplant at boundaries */
     background: linear-gradient(180deg,
-        var(--bg-primary) 0%,
-        var(--bg-primary) 10%,
-        rgba(63, 86, 52, 0.1) 50%,
-        var(--bg-secondary) 100%);
+        var(--color-deep-eggplant) 0%,
+        var(--bg-primary) 40%,
+        var(--color-deep-eggplant) 100%);
 }
 
 .travel__grid {
@@ -672,11 +722,10 @@
  * ---------------------------------------- */
 
 .registry {
+    /* Stays in eggplant — steady, no aubergine peak */
     background: linear-gradient(180deg,
-        var(--bg-secondary) 0%,
-        rgba(90, 26, 44, 0.15) 40%,
-        var(--bg-secondary) 70%,
-        var(--bg-primary) 100%);
+        var(--color-deep-eggplant) 0%,
+        var(--color-deep-eggplant) 100%);
 }
 
 .registry__content {
@@ -750,11 +799,10 @@
  * ---------------------------------------- */
 
 .rsvp {
+    /* Starts at eggplant, rises to aubergine for footer transition */
     background: linear-gradient(180deg,
-        var(--bg-secondary) 0%,
-        var(--color-deep-aubergine) 40%,
-        var(--color-deep-eggplant) 70%,
-        var(--bg-primary) 100%);
+        var(--color-deep-eggplant) 0%,
+        var(--color-deep-aubergine) 100%);
 }
 
 .rsvp__container {
@@ -879,7 +927,7 @@
 .footer {
     padding: var(--space-12) 0;
     text-align: center;
-    background-color: var(--bg-primary);
+    background-color: #3F1F4A;
     border-top: 1px solid var(--border-subtle);
 }
 
