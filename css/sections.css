@@ -173,19 +173,33 @@
     margin-bottom: 0;
 }
 
-/* Mobile: 2 columns for all rows */
-.party__row {
-    grid-template-columns: repeat(2, 1fr);
+/* Mobile: flatten all rows into one 2-column grid so items pair across row boundaries */
+@media (max-width: 599px) {
+    .party__members {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+    .party__row {
+        display: contents;
+    }
 }
 
-/* Row of 4: stays 2 cols on small, 4 on tablet+ */
+/* Tablet+: rows manage their own columns, starting at 2 cols default */
+@media (min-width: 600px) {
+    .party__row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Row of 4: 4 cols on tablet+ */
 @media (min-width: 600px) {
     .party__row--4 {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-/* Row of 5: goes to 5 cols on tablet+ */
+/* Row of 5: 5 cols on tablet+ */
 @media (min-width: 600px) {
     .party__row--5 {
         grid-template-columns: repeat(5, 1fr);
