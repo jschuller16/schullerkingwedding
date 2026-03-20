@@ -199,10 +199,40 @@
     }
 }
 
+/* Row of 3: 3 cols on tablet+ */
+@media (min-width: 600px) {
+    .party__row--3 {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* Row of 5: 5 cols on tablet+ */
 @media (min-width: 600px) {
     .party__row--5 {
         grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* Flower girls row: 2 centered cols matching ~4-col card width */
+@media (min-width: 600px) {
+    .party__row--flowers {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Solo member (Audrey on mobile): same card width, centered */
+@media (max-width: 599px) {
+    .party__member--solo {
+        grid-column: 1 / -1;
+        width: calc((100% - var(--space-6)) / 2);
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
