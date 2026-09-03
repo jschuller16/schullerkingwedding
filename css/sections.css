@@ -416,6 +416,70 @@
 }
 
 /* ----------------------------------------
+ * OUR FAVORITE SPOTS (Things to Do)
+ * ----------------------------------------
+ * A plain <ul> of places. Each item stacks a name, a category, and
+ * any number of optional detail lines. Spans are block-level so the
+ * three parts sit on their own rows without extra wrapper markup.
+ */
+
+.favorites {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.favorites__item {
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+/* No trailing rule on the last spot — it would double up with the
+   accordion's own bottom edge. */
+.favorites__item:last-child {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.favorites__name {
+    display: block;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-medium);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--text-primary);
+}
+
+.favorites__category {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-style: italic;
+    color: var(--color-lavender-mist);
+    margin-top: var(--space-1);
+}
+
+.favorites__detail {
+    display: block;
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--text-secondary);
+    margin-top: var(--space-2);
+}
+
+/* "Our order" / "Fun fact" label. */
+.favorites__detail em {
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+/* ----------------------------------------
  * HOTEL BLOCK COMPONENT
  * ---------------------------------------- */
 
@@ -733,18 +797,8 @@
     font-size: var(--text-xl);
 }
 
-/* ----------------------------------------
- * FOOTER UPDATE
- * ---------------------------------------- */
-
-.footer__tagline {
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    font-style: italic;
-    color: var(--text-secondary);
-    text-align: center;
-    margin: 0 auto;
-}
+/* The .footer__tagline rule that lived here was removed along with the
+   footer — see .rsvp__signoff in layout.css. */
 
 /* ----------------------------------------
  * ACCENT COLOR SYSTEM

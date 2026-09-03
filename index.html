@@ -653,7 +653,7 @@
                 </div>
 
                 <div class="timeline__item">
-                    <time class="timeline__time">6:00 PM</time>
+                    <time class="timeline__time">6:30 PM</time>
                     <div class="timeline__dot"></div>
                     <div class="timeline__content">
                         <h4 class="timeline__title">Dinner & Celebration</h4>
@@ -661,13 +661,27 @@
                 </div>
 
                 <div class="timeline__item">
-                    <time class="timeline__time">11:00 PM</time>
+                    <time class="timeline__time">10:00 PM</time>
                     <div class="timeline__dot"></div>
                     <div class="timeline__content">
                         <h4 class="timeline__title">Last Dance</h4>
                     </div>
                 </div>
             </div>
+
+            <!--
+                Afterparty note. Deliberately outside .details__timeline so
+                it isn't caught by that block's translateX offset and stays
+                centred on the section.
+            -->
+            <p class="details__afterparty">
+                <span class="details__afterparty-name">Happily Ever After Party</span>
+                <span class="details__afterparty-text">
+                    Want to keep the party going? Join us at Group Therapy
+                    (located across the hall on Hotel ZaZa's 7th floor)
+                    immediately following the couple's send off!
+                </span>
+            </p>
         </div>
     </section>
 
@@ -689,7 +703,7 @@
 
             <div class="dresscode__attire">
                 <p class="dresscode__attire-title">Black Tie Optional</p>
-                <p class="dresscode__attire-note">We invite you to dress in your finest and most fabulous.</p>
+                <p class="dresscode__attire-note">We invite you to dress in your finest and most fabulous!</p>
             </div>
         </div>
     </section>
@@ -868,7 +882,7 @@
                                 <div class="travel-option">
                                     <h5 class="travel-option__name">By Ground</h5>
                                     <p>
-                                        Who doesn't love a good road trip! If you'd prefer to sit back and enjoy the ride, the luxury motor coach service Vonlane offers daily routes from Fort Worth, Dallas, and Houston to Austin, with drop-off at the DoubleTree by Hilton Hotel Austin - University Area.
+                                        If you'd prefer to sit back and enjoy the ride, the luxury motor coach service Vonlane offers daily routes from Fort Worth, Dallas, and Houston to Austin, with drop-off at the DoubleTree by Hilton Hotel Austin - University Area.
                                     </p>
                                 </div>
                             </div>
@@ -935,7 +949,7 @@
                                         <strong>The LINE</strong> — Modern stay along Austin's scenic Lady Bird Lake
                                     </li>
                                     <li>
-                                        <strong>South Congress Hotel</strong> — Boutique style on Austin's iconic SoCo strip
+                                        <strong>citizenM</strong> — Compact and affordable smart rooms nearby
                                     </li>
                                 </ul>
                             </div>
@@ -955,7 +969,83 @@
                     </button>
                     <div class="accordion__content">
                         <div class="accordion__body">
-                            <p>COMING SOON</p>
+                            <!--
+                                Our Favorite Spots. Each entry is a list item
+                                holding a name, a category, and any number of
+                                optional detail lines (our order, a fun fact).
+                                Add or remove entries freely — the list is
+                                plain markup, no JS.
+                            -->
+                            <div class="travel-subsection">
+                                <h4 class="travel-subsection__title">Our Favorite Spots</h4>
+
+                                <ul class="favorites">
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Péché</span>
+                                        <span class="favorites__category">our favorite happy hour</span>
+                                        <span class="favorites__detail">
+                                            <em>Our order</em> — A Luna Rosa (it'll always be
+                                            Pink Moon to us) and the duck confit mac &amp; cheese.
+                                        </span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Kerbey Lane — Central</span>
+                                        <span class="favorites__category">our favorite diner (the original on Kerbey Lane!)</span>
+                                        <span class="favorites__detail">
+                                            <em>Her order</em> — The Paris Texas Platter.
+                                        </span>
+                                        <span class="favorites__detail">
+                                            <em>His order</em> — Eggs Francisco, subbing a side
+                                            for a cinnamon swirl pancake.
+                                        </span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Bluefin, Sunset Valley</span>
+                                        <span class="favorites__category">our favorite local dinner spot</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Fixe</span>
+                                        <span class="favorites__category">our favorite weekend brunch</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Drinks Records Lounge</span>
+                                        <span class="favorites__category">our favorite dive bar and record store</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Coppertank</span>
+                                        <span class="favorites__category">our favorite pool hall</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Barbarella</span>
+                                        <span class="favorites__category">our favorite night club</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Vintage Bookstore &amp; Wine Bar</span>
+                                        <span class="favorites__category">our favorite bookshop and wine stop</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Bob Bullock Museum</span>
+                                        <span class="favorites__category">our favorite movie theatre</span>
+                                    </li>
+
+                                    <li class="favorites__item">
+                                        <span class="favorites__name">Austin Central Library</span>
+                                        <span class="favorites__category">our favorite rooftop</span>
+                                        <span class="favorites__detail">
+                                            <em>Fun fact</em> — recently named one of TIME's
+                                            25 Buildings that Represent America.
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -978,11 +1068,11 @@
             <div class="faq__list">
                 <div class="faq__item">
                     <button class="faq__question" aria-expanded="false">
-                        <span>Can I bring my children or a plus one?</span>
+                        <span>Can you break this dress code down for me?</span>
                         <span class="faq__icon">+</span>
                     </button>
                     <div class="faq__answer">
-                        <p>Only those explicitly listed on both your invitation and within the RSVP form will be welcome. Thank you for your understanding.</p>
+                        <p>Absolutely! Our wedding is black tie optional, meaning men are expected to be in a suit and tie and women are expected to be in a mid or full length dress. While not a requirement, we encourage our guests to dress up and be their most fabulous! A bespoke suit jacket, sequins and all things extras are more than welcome. If you really want to make the bride's day, think Met Gala Extravaganza — specifically the greatest Met Gala theme of all time, Heavenly Bodies :)</p>
                     </div>
                 </div>
 
@@ -992,17 +1082,7 @@
                         <span class="faq__icon">+</span>
                     </button>
                     <div class="faq__answer">
-                        <p>Please RSVP no later than September 30, 2026. The Hotel ZaZa block will remain open until that date as well, although we recommend booking earlier to ensure availability.</p>
-                    </div>
-                </div>
-
-                <div class="faq__item">
-                    <button class="faq__question" aria-expanded="false">
-                        <span>What's the parking situation?</span>
-                        <span class="faq__icon">+</span>
-                    </button>
-                    <div class="faq__answer">
-                        <p>Hotel ZaZa is a valet-only hotel. Parking is $59 per night. We strongly encourage any guests not staying at Hotel Zaza to walk or use rideshare to the event.</p>
+                        <p>Please RSVP no later than October 7, 2026. The Hotel ZaZa room block is held until September 30, 2026, although we recommend booking earlier to ensure availability.</p>
                     </div>
                 </div>
 
@@ -1022,17 +1102,27 @@
                         <span class="faq__icon">+</span>
                     </button>
                     <div class="faq__answer">
-                        <p>We ask that our guests refrain from using their phones during the ceremony, but we welcome you to take photos throughout cocktail hour and the reception! After the wedding, please upload any photos you have to [link TBD] so we can enjoy seeing our night through the eyes of our guests.</p>
+                        <p>We ask that our guests refrain from using their phones during the ceremony, but we welcome you to take photos throughout cocktail hour and the reception! After the wedding, please upload any photos you have to <a href="https://photos.app.goo.gl/ExXwKsJWoHgkB7SP7" target="_blank" rel="noopener">our shared album</a> so we can enjoy seeing our night through the eyes of our guests.</p>
                     </div>
                 </div>
 
                 <div class="faq__item">
                     <button class="faq__question" aria-expanded="false">
-                        <span>Can you break this dress code down for me?</span>
+                        <span>What's the parking situation?</span>
                         <span class="faq__icon">+</span>
                     </button>
                     <div class="faq__answer">
-                        <p>Absolutely! Our wedding is black tie optional, meaning men are expected to be in a suit and tie and women are expected to be in a mid or full length dress. While not a requirement, we encourage our guests to dress up and be their most fabulous! A bespoke suit jacket, sequins and all things extras are more than welcome. If you really want to make the bride's day, think Met Gala Extravaganza — specifically the greatest Met Gala theme of all time, Heavenly Bodies :)</p>
+                        <p>Hotel ZaZa is a valet-only hotel. Parking is $59 per night. We strongly encourage any guests not staying at Hotel Zaza to walk or use rideshare to the event.</p>
+                    </div>
+                </div>
+
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span>Can I bring my children or a plus one?</span>
+                        <span class="faq__icon">+</span>
+                    </button>
+                    <div class="faq__answer">
+                        <p>Only those explicitly listed on both your invitation and within the RSVP form will be welcome. Thank you for your understanding.</p>
                     </div>
                 </div>
             </div>
@@ -1082,19 +1172,47 @@
             <div class="rsvp__container">
                 <!-- Step 1: Name Lookup -->
                 <div id="rsvp-step-1" class="rsvp__step rsvp__step--active">
-                    <p class="rsvp__instructions">
-                        COMING SOON — Will be open once invitations are sent out.
+                    <!--
+                        This text is set by js/rsvp.js from CONFIG.rsvp —
+                        it shows the closed message or the open message
+                        depending on CONFIG.rsvp.isOpen.
+
+                        The copy below is only what shows before the script
+                        runs, so it stays neutral: now that the RSVP is open,
+                        a "check back soon" holding line would be actively
+                        wrong for anyone whose JavaScript is slow or broken.
+                        The <noscript> beneath gives those guests a way in.
+                    -->
+                    <p id="rsvp-instructions" class="rsvp__instructions">
+                        One moment — finding your invitation.
                     </p>
-                    <form id="rsvp-lookup-form" class="rsvp__form">
+                    <noscript>
+                        <p class="rsvp__instructions">
+                            Our RSVP form needs JavaScript to look up your
+                            invitation. Please email us at
+                            <a href="mailto:schullerkingwedding@gmail.com">schullerkingwedding@gmail.com</a>
+                            and we'll gladly RSVP on your behalf.
+                        </p>
+                    </noscript>
+                    <form id="rsvp-lookup-form" class="rsvp__form" hidden>
                         <div class="form__group">
                             <label for="guest-name" class="form__label">Your Name</label>
-                            <input 
-                                type="text" 
-                                id="guest-name" 
-                                name="guest-name" 
+                            <!--
+                                autocomplete is off on purpose. With
+                                autocomplete="name" the browser stacks its own
+                                past-entries dropdown over our suggestion list,
+                                which looked like duplicate results.
+                            -->
+                            <input
+                                type="text"
+                                id="guest-name"
+                                name="guest-name"
                                 class="form__input"
                                 placeholder="First and Last Name"
-                                autocomplete="name"
+                                autocomplete="off"
+                                autocorrect="off"
+                                autocapitalize="words"
+                                spellcheck="false"
                                 required
                             >
                         </div>
@@ -1102,10 +1220,16 @@
                             <span class="btn__text">Find My Invitation</span>
                         </button>
                     </form>
-                    <p id="rsvp-error" class="rsvp__error" hidden>
-                        We couldn't find that name on our guest list. Please try again 
+                    <p id="rsvp-error" class="rsvp__error" role="alert" hidden>
+                        We couldn't find that name on our guest list. Please try again
                         or contact us directly.
                     </p>
+
+                    <!--
+                        Household picker. Only appears when a name matches
+                        more than one invitation — populated by js/rsvp.js.
+                    -->
+                    <div id="rsvp-choices" class="rsvp__choices" hidden></div>
                 </div>
 
                 <!-- Step 2: Household RSVP -->
@@ -1115,16 +1239,25 @@
                     <form id="rsvp-household-form" class="rsvp__form">
                         <div id="household-members" class="rsvp__members"></div>
 
+                        <!--
+                            Rehearsal dinner. Only rendered for households
+                            with at least one invited member, and only
+                            lists those members. Populated by js/rsvp.js.
+                        -->
+                        <div id="rsvp-rehearsal" class="rsvp__rehearsal" hidden></div>
+
                         <div class="form__group">
-                            <label for="rsvp-note" class="form__label">Note to the Couple (Optional)</label>
-                            <textarea 
-                                id="rsvp-note" 
-                                name="rsvp-note" 
+                            <label for="rsvp-note" class="form__label">A question to our married couples...</label>
+                            <textarea
+                                id="rsvp-note"
+                                name="rsvp-note"
                                 class="form__textarea"
                                 rows="3"
-                                placeholder="Any message, dietary restrictions, or song requests..."
+                                placeholder="What was your first dance song?"
                             ></textarea>
                         </div>
+
+                        <p id="rsvp-form-error" class="rsvp__error" role="alert" hidden></p>
 
                         <div class="rsvp__actions">
                             <button type="button" class="btn btn--secondary" id="rsvp-back">
@@ -1144,29 +1277,32 @@
                         <h3 class="rsvp__confirmation-title">Thank You</h3>
                         <p id="rsvp-confirmation-message" class="rsvp__confirmation-text"></p>
                         <p class="rsvp__confirmation-note">
-                            A confirmation email has been sent. If you need to make 
-                            changes, please contact us directly.
+                            Your response has been recorded. If you need to make a
+                            change, just reach out to us directly.
                         </p>
                     </div>
                 </div>
             </div>
 
-            <div class="rsvp__deadline">
-                <p>Please respond by <time datetime="2026-09-30">September 30, 2026</time></p>
-            </div>
+            <!--
+                The "Please respond by ..." line that used to sit here has
+                been removed — the deadline now leads the section, set from
+                CONFIG.rsvp.openMessage. The sign-off below closes the page
+                in its place.
+            -->
+            <p class="rsvp__signoff">We love ya at ZaZa!</p>
         </div>
     </section>
 
-    <!-- 
+    <!--
     ============================================
-    FOOTER - UPDATED
+    FOOTER — REMOVED
     ============================================
+    The footer held nothing but the "We love ya at ZaZa!" tagline, which
+    now closes the RSVP section instead. The RSVP gradient already ends on
+    Deep Aubergine — the same colour the footer band used — so the bottom
+    of the page is unchanged.
     -->
-    <footer class="footer">
-        <div class="footer__inner">
-            <p class="footer__tagline">We love ya at Za!</p>
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <script src="js/config.js"></script>
