@@ -1,152 +1,149 @@
 [
     {
-        "guest_id": "guest_001",
-        "household_id": "household_001",
-        "household_name": "The Williams Family",
-        "first_name": "Robert",
-        "last_name": "Williams",
-        "email": "robert.williams@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
+        "_comment": "SAMPLE DATA ONLY — every name below is invented. This repository is public, so real guests must never appear here. The real list lives in Google Sheets and is fetched at runtime whenever CONFIG.googleSheets.useLocalData is false (which is how the live site runs). This file is only read when that flag is flipped to true for local testing.",
+        "_covers": "Between them these households exercise every branch of the RSVP form: adults, children, a nickname lookup, a single-person household, an unnamed plus-one, and a mixed rehearsal-dinner invite."
     },
     {
-        "guest_id": "guest_002",
-        "household_id": "household_001",
-        "household_name": "The Williams Family",
-        "first_name": "Elizabeth",
-        "last_name": "Williams",
-        "email": "elizabeth.williams@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
+        "guest_id": "g1",
+        "household_id": "h1",
+        "household_name": "The Fairweather Family",
+        "first_name": "Nicole",
+        "nickname": "",
+        "last_name": "Fairweather",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": "Y"
     },
     {
-        "guest_id": "guest_003",
-        "household_id": "household_001",
-        "household_name": "The Williams Family",
-        "first_name": "James",
-        "last_name": "Williams",
-        "email": "",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_004",
-        "household_id": "household_002",
-        "household_name": "Sarah Mitchell & Guest",
-        "first_name": "Sarah",
-        "last_name": "Mitchell",
-        "email": "sarah.mitchell@example.com",
-        "has_plus_one": true,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_005",
-        "household_id": "household_002",
-        "household_name": "Sarah Mitchell & Guest",
-        "first_name": "Guest of",
-        "last_name": "Sarah Mitchell",
-        "email": "",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_006",
-        "household_id": "household_003",
-        "household_name": "Michael Chen",
-        "first_name": "Michael",
-        "last_name": "Chen",
-        "email": "michael.chen@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_007",
-        "household_id": "household_004",
-        "household_name": "The Johnsons",
-        "first_name": "David",
-        "last_name": "Johnson",
-        "email": "david.johnson@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_008",
-        "household_id": "household_004",
-        "household_name": "The Johnsons",
-        "first_name": "Amanda",
-        "last_name": "Johnson",
-        "email": "amanda.johnson@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_009",
-        "household_id": "household_005",
-        "household_name": "Emily Rodriguez",
-        "first_name": "Emily",
-        "last_name": "Rodriguez",
-        "email": "emily.rodriguez@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_010",
-        "household_id": "household_006",
-        "household_name": "The Patel Family",
-        "first_name": "Raj",
-        "last_name": "Patel",
-        "email": "raj.patel@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_011",
-        "household_id": "household_006",
-        "household_name": "The Patel Family",
-        "first_name": "Priya",
-        "last_name": "Patel",
-        "email": "priya.patel@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_012",
-        "household_id": "household_006",
-        "household_name": "The Patel Family",
-        "first_name": "Aarav",
-        "last_name": "Patel",
-        "email": "",
-        "has_plus_one": false,
-        "plus_one_name": ""
-    },
-    {
-        "guest_id": "guest_013",
-        "household_id": "household_007",
-        "household_name": "Thomas & Rebecca O'Brien",
+        "guest_id": "g2",
+        "household_id": "h1",
+        "household_name": "The Fairweather Family",
         "first_name": "Thomas",
-        "last_name": "O'Brien",
-        "email": "thomas.obrien@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
+        "nickname": "Tom",
+        "last_name": "Fairweather",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": "Y"
     },
     {
-        "guest_id": "guest_014",
-        "household_id": "household_007",
-        "household_name": "Thomas & Rebecca O'Brien",
-        "first_name": "Rebecca",
-        "last_name": "O'Brien",
-        "email": "rebecca.obrien@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
+        "guest_id": "g3",
+        "household_id": "h1",
+        "household_name": "The Fairweather Family",
+        "first_name": "Mia",
+        "nickname": "",
+        "last_name": "Fairweather",
+        "is_child": "Y",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
     },
     {
-        "guest_id": "guest_015",
-        "household_id": "household_008",
-        "household_name": "Jennifer Kim",
-        "first_name": "Jennifer",
-        "last_name": "Kim",
-        "email": "jennifer.kim@example.com",
-        "has_plus_one": false,
-        "plus_one_name": ""
+        "guest_id": "g4",
+        "household_id": "h2",
+        "household_name": "Mr. Peregrine Halloway",
+        "first_name": "Peregrine",
+        "nickname": "Perry",
+        "last_name": "Halloway",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": "Y"
+    },
+    {
+        "guest_id": "g5",
+        "household_id": "h3",
+        "household_name": "Ms. Odette Vandermere",
+        "first_name": "Odette",
+        "nickname": "",
+        "last_name": "Vandermere",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g6",
+        "household_id": "h4",
+        "household_name": "Ms. Marisol Quintanilla & Guest",
+        "first_name": "Marisol",
+        "nickname": "",
+        "last_name": "Quintanilla",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": "Y"
+    },
+    {
+        "guest_id": "g7",
+        "household_id": "h4",
+        "household_name": "Ms. Marisol Quintanilla & Guest",
+        "first_name": "",
+        "nickname": "",
+        "last_name": "",
+        "is_child": "",
+        "is_unnamed_+1": "Y",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g8",
+        "household_id": "h5",
+        "household_name": "The Ashgrove Family",
+        "first_name": "Kathryn",
+        "nickname": "Kate",
+        "last_name": "Ashgrove",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g9",
+        "household_id": "h5",
+        "household_name": "The Ashgrove Family",
+        "first_name": "Ella",
+        "nickname": "",
+        "last_name": "Ashgrove",
+        "is_child": "Y",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g10",
+        "household_id": "h5",
+        "household_name": "The Ashgrove Family",
+        "first_name": "Audrey",
+        "nickname": "",
+        "last_name": "Ashgrove",
+        "is_child": "Y",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g11",
+        "household_id": "h6",
+        "household_name": "Bev Larkspur, Colm Whitfield & Greta Sunderland",
+        "first_name": "Beverly",
+        "nickname": "Bev",
+        "last_name": "Larkspur",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g12",
+        "household_id": "h6",
+        "household_name": "Bev Larkspur, Colm Whitfield & Greta Sunderland",
+        "first_name": "Colm",
+        "nickname": "",
+        "last_name": "Whitfield",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
+    },
+    {
+        "guest_id": "g13",
+        "household_id": "h6",
+        "household_name": "Bev Larkspur, Colm Whitfield & Greta Sunderland",
+        "first_name": "Greta",
+        "nickname": "",
+        "last_name": "Sunderland",
+        "is_child": "",
+        "is_unnamed_+1": "",
+        "rehearsal_invited": ""
     }
 ]

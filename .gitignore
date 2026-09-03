@@ -1,0 +1,19 @@
+# ============================================
+# PRIVACY — READ THIS BEFORE EDITING
+# ============================================
+# This repository is served by GitHub Pages, which means its contents are
+# public. The real guest list must never be committed. Keep every file
+# holding real guest names ignored here.
+#
+# The real list lives in Google Sheets. data/guests.json is SAMPLE data
+# only — never paste real guests into it.
+
+RSVP.xlsx
+Wedding_Guest_List_FILLED.xlsx
+*_FILLED.xlsx
+guest-list*.csv
+guests-real*.json
+
+# Mac noise
+.DS_Store
+**/.DS_Store
