@@ -280,8 +280,14 @@ day. `js/map.js` was already written and needed no changes — it reads `data-na
 `data-desc` off each `.map-marker` into the tooltip, one open at a time, with keyboard and
 click-outside handling.
 
-**Nine spots.** Bluefin was dropped at Jake's request. Hotel ZaZa is drawn as a rosewater
-ring rather than a star, because it is the venue and not a recommendation.
+**Ten spots.** Bluefin was dropped at Jake's request; Laguna Gloria was added later (their
+favorite art museum, and where they got engaged). Hotel ZaZa is drawn as a rosewater ring
+rather than a star, because it is the venue and not a recommendation.
+
+**The three road lines are MoPac, Congress and I-35** — the way Austin actually divides
+itself: MoPac west, I-35 east, Congress down the middle. The west line was briefly labelled
+Lamar, which Jake corrected. Laguna Gloria (3809 W 35th) sits west of MoPac and Kerbey Lane
+(3704 Kerbey Ln) east of it; both are correct and worth preserving if anything moves.
 
 **Marker positions are generated, not hand-placed.** They come from the real street
 addresses, projected, then put through two deliberate distortions:
@@ -292,7 +298,7 @@ addresses, projected, then put through two deliberate distortions:
    1.2 km. Without this, the downtown six collapse into an unclickable blob.
 2. **Vertical gap collapse.** Empty vertical runs longer than 52 units are squeezed to 52,
    which removed the dead band between Bob Bullock and downtown and took the canvas from
-   400x516 to 400x299.
+   400x516 to 400x315 (400x299 before Laguna Gloria).
 
 Nothing is placed *wrongly* — north is north, east is east. Distance just compresses the
 further out you go, the way a transit map does. **If you add or move a spot, recompute the
@@ -311,8 +317,18 @@ Two things worth knowing if this comes up again:
   of ZaZa. An earlier draft had it a block too far west. Jake caught it.
 
 A cluster-and-zoom interaction was designed and then dropped: after compression the closest
-two stars sit 36 units apart, so everything is directly clickable and the zoom solved a
+two stars sit ~35 units apart, so everything is directly clickable and the zoom solved a
 problem that no longer existed.
+
+## Links inside FAQ answers
+
+`reset.css` sets `a:not([class]) { color: currentColor }`, which out-specifies
+`a { color: var(--color-link) }` in `typography.css`. An unclassed link therefore renders
+as plain body text and only reveals itself on hover — which is how the shared photo album
+link shipped looking like ordinary prose. `.faq__answer a` now pins the link to the *hover*
+colour permanently and underlines it, and the `:hover` rule repeats that same colour on
+purpose so nothing changes when the pointer arrives. If you add a link elsewhere in the
+page, check it against this trap first.
 
 ## Content rules
 
