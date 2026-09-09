@@ -416,70 +416,6 @@
 }
 
 /* ----------------------------------------
- * OUR FAVORITE SPOTS (Things to Do)
- * ----------------------------------------
- * A plain <ul> of places. Each item stacks a name, a category, and
- * any number of optional detail lines. Spans are block-level so the
- * three parts sit on their own rows without extra wrapper markup.
- */
-
-.favorites {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.favorites__item {
-    padding-bottom: var(--space-4);
-    margin-bottom: var(--space-4);
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-/* No trailing rule on the last spot — it would double up with the
-   accordion's own bottom edge. */
-.favorites__item:last-child {
-    padding-bottom: 0;
-    margin-bottom: 0;
-    border-bottom: none;
-}
-
-.favorites__name {
-    display: block;
-    font-family: var(--font-body);
-    font-size: var(--text-sm);
-    font-weight: var(--font-medium);
-    letter-spacing: var(--tracking-wide);
-    text-transform: uppercase;
-    color: var(--text-primary);
-}
-
-.favorites__category {
-    display: block;
-    font-family: var(--font-display);
-    font-size: var(--text-base);
-    font-style: italic;
-    color: var(--color-lavender-mist);
-    margin-top: var(--space-1);
-}
-
-.favorites__detail {
-    display: block;
-    font-size: var(--text-sm);
-    line-height: var(--leading-relaxed);
-    color: var(--text-secondary);
-    margin-top: var(--space-2);
-}
-
-/* "Our order" / "Fun fact" label. */
-.favorites__detail em {
-    font-style: normal;
-    text-transform: uppercase;
-    letter-spacing: var(--tracking-wide);
-    font-size: var(--text-xs);
-    color: var(--text-muted);
-}
-
-/* ----------------------------------------
  * HOTEL BLOCK COMPONENT
  * ---------------------------------------- */
 
@@ -653,6 +589,152 @@
 .map-marker:focus-visible {
     outline: 2px solid var(--color-orchid-purple);
     outline-offset: 4px;
+}
+
+/* ----------------------------------------
+ * AUSTIN MAP — SVG LAYERS
+ * ----------------------------------------
+ * Every colour here comes from the palette. The SVG carries no fills of
+ * its own beyond `transparent` on the tap targets, so the whole map can
+ * be recoloured from variables.css.
+ */
+
+/* Decorative background stars. Sit behind everything and never overlap a
+   marker or a label — the positions are precomputed in the markup. */
+.austin-map__starfield {
+    fill: var(--color-lavender-mist);
+    opacity: 0.3;
+}
+
+/* Pool of light over downtown, where most of the spots are. */
+.austin-map__glow-in {
+    stop-color: var(--color-orchid-purple);
+    stop-opacity: 0.13;
+}
+
+.austin-map__glow-out {
+    stop-color: var(--color-orchid-purple);
+    stop-opacity: 0;
+}
+
+.austin-map__roads polyline {
+    fill: none;
+    stroke: var(--color-orchid-purple);
+    stroke-width: 1.1;
+    stroke-linecap: round;
+    opacity: 0.15;
+}
+
+/* I-35 reads slightly heavier than the surface streets. */
+.austin-map__roads .austin-map__road--major {
+    stroke-width: 1.7;
+    opacity: 0.2;
+}
+
+.austin-map__river {
+    fill: none;
+    stroke: var(--color-deep-aubergine);
+    stroke-width: 9;
+    stroke-linecap: round;
+    opacity: 0.9;
+}
+
+.austin-map__area-labels text {
+    font-family: var(--font-body);
+    font-size: 7.5px;
+    letter-spacing: var(--tracking-widest);
+    fill: var(--text-muted);
+}
+
+.austin-map__landmark circle {
+    fill: none;
+    stroke: var(--color-orchid-purple);
+    stroke-width: 1;
+    opacity: 0.55;
+}
+
+.austin-map__landmark text {
+    font-family: var(--font-body);
+    font-size: 7px;
+    letter-spacing: var(--tracking-wider);
+    fill: var(--text-muted);
+}
+
+/* Hotel ZaZa. Rosewater and ring-shaped so it never reads as one of the
+   recommendations — it is where everyone is staying. */
+.austin-map__venue-ring {
+    fill: none;
+    stroke: var(--color-rosewater-glow);
+    stroke-width: 1.5;
+}
+
+.austin-map__venue-dot {
+    fill: var(--color-rosewater-glow);
+}
+
+.austin-map__venue text {
+    font-family: var(--font-body);
+    font-size: 8.5px;
+    letter-spacing: var(--tracking-wide);
+    fill: var(--color-rosewater-glow);
+}
+
+/* The star glyph itself. Fill lives here, not on the path, so the active
+   state below can override it. */
+.map-marker__star {
+    fill: var(--color-lavender-mist);
+}
+
+/* Standing labels. Every spot is named without needing a tap; the tooltip
+   carries the detail. */
+.map-marker__label {
+    font-family: var(--font-body);
+    font-size: 10px;
+    letter-spacing: var(--tracking-wide);
+    fill: var(--text-secondary);
+    transition: fill var(--transition-fast);
+    /* Never let the label swallow the tap — the whole <g> is the target
+       and pointer events on text can beat the transparent hit circle. */
+    pointer-events: none;
+}
+
+.map-marker--active .map-marker__label {
+    fill: var(--color-rosewater-glow);
+}
+
+/* Scale the active marker about its own centre. Without transform-box the
+   origin is the SVG origin and the star flies across the canvas. */
+.map-marker {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+/* The SVG scales with the viewport, so text set in user units shrinks with
+   it. Bump the sizes on narrow screens or labels land under 8 real pixels. */
+@media (max-width: 599px) {
+    .map-marker__label {
+        font-size: 12px;
+    }
+
+    .austin-map__area-labels text {
+        font-size: 9px;
+    }
+
+    .austin-map__venue text {
+        font-size: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .map-marker,
+    .map-marker__star,
+    .map-marker__label {
+        transition: none;
+    }
+
+    .map-marker--active {
+        transform: none;
+    }
 }
 
 /* Map tooltip */

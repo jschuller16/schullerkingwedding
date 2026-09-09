@@ -969,82 +969,216 @@
                     </button>
                     <div class="accordion__content">
                         <div class="accordion__body">
-                            <!--
-                                Our Favorite Spots. Each entry is a list item
-                                holding a name, a category, and any number of
-                                optional detail lines (our order, a fun fact).
-                                Add or remove entries freely — the list is
-                                plain markup, no JS.
-                            -->
                             <div class="travel-subsection">
                                 <h4 class="travel-subsection__title">Our Favorite Spots</h4>
 
-                                <ul class="favorites">
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Péché</span>
-                                        <span class="favorites__category">our favorite happy hour</span>
-                                        <span class="favorites__detail">
-                                            <em>Our order</em> — A Luna Rosa (it'll always be
-                                            Pink Moon to us) and the duck confit mac &amp; cheese.
-                                        </span>
-                                    </li>
+                            <p class="travel__map-intro">
+                                Nine places we love, and where they sit relative
+                                to the hotel. Tap a star for the details.
+                            </p>
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Kerbey Lane — Central</span>
-                                        <span class="favorites__category">our favorite diner (the original on Kerbey Lane!)</span>
-                                        <span class="favorites__detail">
-                                            <em>Her order</em> — The Paris Texas Platter.
-                                        </span>
-                                        <span class="favorites__detail">
-                                            <em>His order</em> — Eggs Francisco, subbing a side
-                                            for a cinnamon swirl pancake.
-                                        </span>
-                                    </li>
+                            <!--
+                                OUR FAVORITE SPOTS — AUSTIN MAP
+                                ===============================
+                                Marker positions come from the real street
+                                addresses, projected, then put through two
+                                deliberate distortions:
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Bluefin, Sunset Valley</span>
-                                        <span class="favorites__category">our favorite local dinner spot</span>
-                                    </li>
+                                  1. Radial compression. Everything within
+                                     0.7 km of downtown is left EXACTLY as it
+                                     falls, so the spots people will actually
+                                     walk between are true to each other.
+                                     Beyond that, distance is raised to the
+                                     power 0.30 — Kerbey Lane really sits
+                                     4.6 km north and is drawn at about 1.2.
+                                     Without this, downtown collapses into a
+                                     single blob and nothing is clickable.
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Fixe</span>
-                                        <span class="favorites__category">our favorite weekend brunch</span>
-                                    </li>
+                                  2. Vertical gap collapse. Any empty vertical
+                                     run longer than 52 units is squeezed to
+                                     52, which removes the dead band between
+                                     Bob Bullock and downtown and turns a
+                                     400x516 canvas into 400x299.
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Drinks Records Lounge</span>
-                                        <span class="favorites__category">our favorite dive bar and record store</span>
-                                    </li>
+                                Nothing is placed WRONGLY — north is north and
+                                east is east throughout. Distances just
+                                compress the further out you go, the way a
+                                transit map does it. If you add a spot, do not
+                                hand-place it: recompute the whole set, or it
+                                will not agree with its neighbours.
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Coppertank</span>
-                                        <span class="favorites__category">our favorite pool hall</span>
-                                    </li>
+                                Roads and the river are hand-placed in final
+                                coordinates rather than projected, because
+                                running them through the compression above
+                                left them visibly kinked.
+                            -->
+                            <div class="austin-map">
+                                <div class="austin-map__container">
+<svg class="austin-map__svg" viewBox="0 0 400 299" xmlns="http://www.w3.org/2000/svg"
+                                     role="img"
+                                     aria-label="A stylised map of Austin. Nine favorite places are marked as stars around Hotel ZaZa; each can be selected for details.">
+                                    <defs>
+                                        <radialGradient id="downtown-glow">
+                                            <stop class="austin-map__glow-in" offset="0"/>
+                                            <stop class="austin-map__glow-out" offset="1"/>
+                                        </radialGradient>
+                                    </defs>
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Barbarella</span>
-                                        <span class="favorites__category">our favorite night club</span>
-                                    </li>
+                                    <!-- Background star field. Decorative; positions are precomputed so
+                                         none of them sit behind a marker or a label. -->
+                                    <g class="austin-map__starfield" aria-hidden="true">
+                                        <circle cx="203.1" cy="174.9" r="0.6"/>
+                                        <circle cx="319.1" cy="142.4" r="1.1"/>
+                                        <circle cx="321.4" cy="205.8" r="0.5"/>
+                                        <circle cx="18.0" cy="260.0" r="1.1"/>
+                                        <circle cx="15.8" cy="139.0" r="0.9"/>
+                                        <circle cx="95.6" cy="89.6" r="0.5"/>
+                                        <circle cx="263.7" cy="137.1" r="0.7"/>
+                                        <circle cx="46.3" cy="88.7" r="0.5"/>
+                                        <circle cx="4.2" cy="65.0" r="0.5"/>
+                                        <circle cx="188.2" cy="289.3" r="0.9"/>
+                                        <circle cx="81.8" cy="200.4" r="0.7"/>
+                                        <circle cx="381.9" cy="224.6" r="0.5"/>
+                                        <circle cx="168.3" cy="115.7" r="0.9"/>
+                                        <circle cx="168.9" cy="65.9" r="0.7"/>
+                                        <circle cx="342.8" cy="287.7" r="1.1"/>
+                                        <circle cx="86.6" cy="118.7" r="1.1"/>
+                                        <circle cx="133.0" cy="90.2" r="0.5"/>
+                                        <circle cx="33.1" cy="64.7" r="0.6"/>
+                                        <circle cx="10.1" cy="111.3" r="1.1"/>
+                                        <circle cx="280.2" cy="78.8" r="1.1"/>
+                                        <circle cx="196.5" cy="155.3" r="0.5"/>
+                                        <circle cx="53.5" cy="143.5" r="1.1"/>
+                                        <circle cx="10.5" cy="82.3" r="0.9"/>
+                                        <circle cx="208.6" cy="279.5" r="1.1"/>
+                                        <circle cx="360.8" cy="208.0" r="0.5"/>
+                                        <circle cx="12.3" cy="189.1" r="0.9"/>
+                                        <circle cx="30.4" cy="94.5" r="0.6"/>
+                                        <circle cx="395.7" cy="25.9" r="1.1"/>
+                                        <circle cx="54.8" cy="284.3" r="0.7"/>
+                                        <circle cx="141.9" cy="203.4" r="0.5"/>
+                                        <circle cx="313.9" cy="255.3" r="1.1"/>
+                                        <circle cx="167.2" cy="100.1" r="1.1"/>
+                                        <circle cx="183.4" cy="138.6" r="1.1"/>
+                                        <circle cx="192.5" cy="71.0" r="0.5"/>
+                                        <circle cx="269.8" cy="62.9" r="0.6"/>
+                                        <circle cx="299.5" cy="103.7" r="0.9"/>
+                                        <circle cx="252.6" cy="237.9" r="0.6"/>
+                                        <circle cx="282.8" cy="280.5" r="0.7"/>
+                                        <circle cx="329.7" cy="115.3" r="1.1"/>
+                                        <circle cx="197.6" cy="95.8" r="1.1"/>
+                                        <circle cx="314.3" cy="9.6" r="0.6"/>
+                                        <circle cx="305.5" cy="81.5" r="0.6"/>
+                                        <circle cx="316.4" cy="290.3" r="0.5"/>
+                                        <circle cx="379.7" cy="203.2" r="0.6"/>
+                                        <circle cx="156.1" cy="135.1" r="0.6"/>
+                                        <circle cx="249.2" cy="268.8" r="0.9"/>
+                                        <circle cx="219.6" cy="193.9" r="1.1"/>
+                                        <circle cx="314.0" cy="97.2" r="0.5"/>
+                                        <circle cx="15.1" cy="239.5" r="0.5"/>
+                                        <circle cx="395.9" cy="266.1" r="1.1"/>
+                                        <circle cx="254.4" cy="156.1" r="1.1"/>
+                                        <circle cx="104.6" cy="199.3" r="1.1"/>
+                                        <circle cx="214.1" cy="150.4" r="1.1"/>
+                                        <circle cx="217.2" cy="291.9" r="0.5"/>
+                                    </g>
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Vintage Bookstore &amp; Wine Bar</span>
-                                        <span class="favorites__category">our favorite bookshop and wine stop</span>
-                                    </li>
+                                    <!-- Soft pool of light over downtown. Deliberately a gradient rather
+                                         than a filled box: a hard edge read as a stray UI panel. -->
+                                    <ellipse cx="186" cy="186" rx="185" ry="52" fill="url(#downtown-glow)" aria-hidden="true"/>
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Bob Bullock Museum</span>
-                                        <span class="favorites__category">our favorite movie theatre</span>
-                                    </li>
+                                    <!-- Roads and river. Hand-placed in this coordinate space rather than
+                                         projected: running real road geometry through the marker
+                                         compression below left them visibly kinked. They orient the eye,
+                                         they are not survey-accurate. -->
+                                    <g class="austin-map__roads" aria-hidden="true">
+                                        <polyline points="232,0 231,52 229,100 223,150 216,200 208,250 202,299"/>
+                                        <polyline points="160,0 140,40 105,90 60,150 28,200 30,250 36,299"/>
+                                        <polyline class="austin-map__road--major" points="330,0 336,100 341,173 346,240 352,299"/>
+                                    </g>
+                                    <polyline class="austin-map__river" aria-hidden="true"
+                                              points="-10,222 70,227 150,232 220,240 280,252 330,266 400,285"/>
 
-                                    <li class="favorites__item">
-                                        <span class="favorites__name">Austin Central Library</span>
-                                        <span class="favorites__category">our favorite rooftop</span>
-                                        <span class="favorites__detail">
-                                            <em>Fun fact</em> — recently named one of TIME's
-                                            25 Buildings that Represent America.
-                                        </span>
-                                    </li>
-                                </ul>
+                                    <g class="austin-map__area-labels" aria-hidden="true">
+                                        <text x="186" y="228" text-anchor="middle">DOWNTOWN</text>
+                                        <text x="390" y="120" text-anchor="end">EAST AUSTIN</text>
+                                        <text x="60" y="24" text-anchor="middle">NORTH AUSTIN</text>
+                                        <text x="104" y="252" text-anchor="middle">LADY BIRD LAKE</text>
+                                        <text x="352" y="46" text-anchor="end">I-35</text>
+                                        <text x="240" y="22" text-anchor="middle">CONGRESS</text>
+                                        <text x="150" y="22" text-anchor="middle">LAMAR</text>
+                                    </g>
+
+                                    <!-- The Capitol, for orientation only. Not selectable. -->
+                                    <g class="austin-map__landmark" aria-hidden="true">
+                                        <circle cx="228" cy="122" r="3"/>
+                                        <text x="235" y="125">CAPITOL</text>
+                                    </g>
+
+                                    <!-- The venue. A ring rather than a star, because it is where everyone
+                                         is staying rather than somewhere we are recommending. -->
+                                    <g class="austin-map__venue">
+                                        <circle class="austin-map__venue-ring" cx="151.1" cy="172.9" r="6.5"/>
+                                        <circle class="austin-map__venue-dot" cx="151.1" cy="172.9" r="2"/>
+                                        <text x="151.1" y="160.9" text-anchor="middle">HOTEL ZAZA</text>
+                                    </g>
+
+                                    <!-- The nine spots. js/map.js reads data-name and data-desc into the
+                                         tooltip; the transparent circle is a finger-sized tap target. -->
+                                    <g class="map-marker" data-name="Kerbey Lane &#8212; Central" data-desc="Our favorite diner, and the original on Kerbey Lane. Her order: the Paris Texas Platter. His: Eggs Francisco, subbing a side for a cinnamon swirl pancake.">
+                                        <circle cx="121.0" cy="46.0" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M121.0,38.0 L123.0,44.0 L129.0,46.0 L123.0,48.0 L121.0,54.0 L119.0,48.0 L113.0,46.0 L119.0,44.0 Z"/>
+                                        <text class="map-marker__label" x="121.0" y="67.0" text-anchor="middle">Kerbey Lane</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Bob Bullock Museum" data-desc="Our favorite movie theatre.">
+                                        <circle cx="230.3" cy="98.0" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M230.3,90.0 L232.3,96.0 L238.3,98.0 L232.3,100.0 L230.3,106.0 L228.3,100.0 L222.3,98.0 L228.3,96.0 Z"/>
+                                        <text class="map-marker__label" x="230.3" y="85.0" text-anchor="middle">Bob Bullock</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Vintage Bookstore &amp; Wine Bar" data-desc="Our favorite bookshop and wine stop.">
+                                        <circle cx="356.2" cy="150.0" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M356.2,142.0 L358.2,148.0 L364.2,150.0 L358.2,152.0 L356.2,158.0 L354.2,152.0 L348.2,150.0 L354.2,148.0 Z"/>
+                                        <text class="map-marker__label" x="363.2" y="137.0" text-anchor="end">Vintage</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Fixe" data-desc="Our favorite weekend brunch. Served Saturday and Sunday only.">
+                                        <circle cx="91.9" cy="167.9" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M91.9,159.9 L93.9,165.9 L99.9,167.9 L93.9,169.9 L91.9,175.9 L89.9,169.9 L83.9,167.9 L89.9,165.9 Z"/>
+                                        <text class="map-marker__label" x="91.9" y="154.9" text-anchor="middle">Fixe</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Barbarella" data-desc="Our favorite night club.">
+                                        <circle cx="328.6" cy="172.9" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M328.6,164.9 L330.6,170.9 L336.6,172.9 L330.6,174.9 L328.6,180.9 L326.6,174.9 L320.6,172.9 L326.6,170.9 Z"/>
+                                        <text class="map-marker__label" x="316.6" y="176.4" text-anchor="end">Barbarella</text>
+                                    </g>
+                                    <g class="map-marker" data-name="P&#233;ch&#233;" data-desc="Our favorite happy hour. Our order: a Luna Rosa (it&#8217;ll always be Pink Moon to us) and the duck confit mac &amp; cheese.">
+                                        <circle cx="168.6" cy="185.6" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M168.6,177.6 L170.6,183.6 L176.6,185.6 L170.6,187.6 L168.6,193.6 L166.6,187.6 L160.6,185.6 L166.6,183.6 Z"/>
+                                        <text class="map-marker__label" x="168.6" y="206.6" text-anchor="middle">P&#233;ch&#233;</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Austin Central Library" data-desc="Our favorite rooftop. Recently named one of TIME&#8217;s 25 Buildings that Represent America.">
+                                        <circle cx="43.8" cy="200.8" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M43.8,192.8 L45.8,198.8 L51.8,200.8 L45.8,202.8 L43.8,208.8 L41.8,202.8 L35.8,200.8 L41.8,198.8 Z"/>
+                                        <text class="map-marker__label" x="36.8" y="221.8" text-anchor="start">Central Library</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Coppertank" data-desc="Our favorite pool hall.">
+                                        <circle cx="273.8" cy="200.8" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M273.8,192.8 L275.8,198.8 L281.8,200.8 L275.8,202.8 L273.8,208.8 L271.8,202.8 L265.8,200.8 L271.8,198.8 Z"/>
+                                        <text class="map-marker__label" x="273.8" y="221.8" text-anchor="middle">Coppertank</text>
+                                    </g>
+                                    <g class="map-marker" data-name="Drinks Records Lounge" data-desc="Our favorite dive bar and record store.">
+                                        <circle cx="355.1" cy="252.8" r="24" fill="transparent"/>
+                                        <path class="map-marker__star" d="M355.1,244.8 L357.1,250.8 L363.1,252.8 L357.1,254.8 L355.1,260.8 L353.1,254.8 L347.1,252.8 L353.1,250.8 Z"/>
+                                        <text class="map-marker__label" x="362.1" y="239.8" text-anchor="end">Drinks</text>
+                                    </g>
+                                </svg>
+
+                                    <!-- Filled by js/map.js from the selected marker's data attributes -->
+                                    <div class="austin-map__tooltip" hidden>
+                                        <h5 class="austin-map__tooltip-name"></h5>
+                                        <p class="austin-map__tooltip-desc"></p>
+                                    </div>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -1248,6 +1382,14 @@
 
                         <div class="form__group">
                             <label for="rsvp-note" class="form__label">A question to our married couples...</label>
+                            <!--
+                                Sits between the label and the box so the
+                                aside reads as part of the question rather
+                                than as help text after it. Not inside the
+                                <label>, which would make screen readers
+                                announce the whole lot as the field name.
+                            -->
+                            <p class="form__aside">(Everyone else, the floor is yours)</p>
                             <textarea
                                 id="rsvp-note"
                                 name="rsvp-note"
@@ -1312,5 +1454,10 @@
     <script src="js/celestial.js"></script>
     <script src="js/accordion.js"></script>
     <script src="js/map.js"></script>
+    <!--
+        Diagnostics only. Does nothing unless ?selftest is in the address,
+        so it costs guests one small file and no behaviour.
+    -->
+    <script src="js/selftest.js"></script>
 </body>
 </html>
