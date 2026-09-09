@@ -82,7 +82,24 @@ const CONFIG = {
         title: 'Welcome Party',
         intro: 'You are also invited to join us the evening before for some bites, booze, and shuffleboard.',
         venue: 'Electric Shuffle',
-        time: '6:00 PM'
+
+        // En dash, one meridiem. "6:00 – 9:00 PM" is the standard way to
+        // write a range that stays within the same half of the day.
+        time: '6:00 – 9:00 PM',
+
+        // Shown only once somebody in the household accepts. One number
+        // per household, not per person — a family of three entering
+        // three numbers gets you duplicates and blanks from the children.
+        phone: {
+            label: 'Please add your phone number so we can send you more information about the evening.',
+            placeholder: '(512) 555-0134',
+            // Digits are counted after stripping spaces, dashes, brackets
+            // and a leading +, so any formatting is accepted. Ten is the
+            // shortest a real US number can be; the check exists to catch
+            // an empty or obviously mistyped field, not to police format.
+            minDigits: 10,
+            error: 'Please enter a phone number we can reach you on.'
+        }
     },
 
     // ----------------------------------------
@@ -228,6 +245,8 @@ Object.freeze(CONFIG.googleSheets);
 Object.freeze(CONFIG.googleForms);
 Object.freeze(CONFIG.mealOptions);
 Object.freeze(CONFIG.rehearsal);
+// Object.freeze is shallow, so the nested phone block needs its own call.
+Object.freeze(CONFIG.rehearsal.phone);
 Object.freeze(CONFIG.childMeal);
 Object.freeze(CONFIG.plusOne);
 Object.freeze(CONFIG.dietary);

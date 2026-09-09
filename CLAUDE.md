@@ -219,11 +219,47 @@ site cannot read the response and showed guests "Thank You" regardless. If respo
 arriving, check the form's Publish state *first*. Open the form in edit mode → Publish →
 Manage → Responders set to "Anyone with the link".
 
-### Verifying submissions still work
+### Verifying submissions still work — the self-test
 
-There is no automatic detection of a rejected submission — see the blind spot above. Jake
-opted on 2026-09-02 for a built-in self-test over re-architecting onto Apps Script; **that
-self-test is not built yet** and is the next task.
+There is no automatic detection of a rejected submission; see the blind spot above. Jake
+chose a built-in self-test over re-architecting onto Apps Script. It lives in
+`js/selftest.js`, is inert unless `?selftest` is in the address, and is styled to match the
+site because Jake is the one running it.
+
+**To run it:** `https://schullerkingwedding.com/?selftest` (or the same on localhost).
+
+It checks three things properly and is honest that the fourth cannot be:
+
+1. The published guest sheet loads — catches an unpublished or moved sheet, and catches
+   Google returning an HTML error page instead of CSV.
+2. It parses, has rows, and has the expected columns — and reports **how many guests are
+   flagged for the Welcome Party**. That number is the feedback loop for editing the sheet:
+   set a row to `Y`, wait out Google's ~5 minute cache, re-run, and the count should rise.
+   If it doesn't, the edit went into the wrong document or the wrong column. `selftest.js`
+   carries its own quote-aware `parseCsvLine` for this, deliberately duplicated from
+   `rsvp.js` so the diagnostic keeps working even if the RSVP code is mid-edit.
+3. `config.js` has a real `/formResponse` URL and five well-formed `entry.NNNN` IDs.
+4. Submission acceptance **cannot** be verified — `no-cors` again. The panel sends a test
+   row and tells Jake what to look for instead.
+
+Test rows use household ID **`SELFTEST`** and carry a short reference like `T1A2B3`, so
+they sort together and can be deleted in a block. The panel never prints guest names — it
+only counts rows — because it can be opened on the live site.
+
+### Welcome Party phone number
+
+Anyone who accepts the Welcome Party triggers a phone field, **one per household, not per
+person** (a family of three entering three numbers gets duplicates, and children have
+none). It appears on the first acceptance and disappears again if everyone declines, so a
+household that changes its mind is never blocked by a field it cannot see the point of.
+
+Validation counts digits after stripping formatting and requires 10, so `(512) 555-0134`,
+`5125550134` and `+44 20 7946 0958` all pass. It exists to catch an empty or mistyped
+field, not to enforce a format — a strict US pattern would reject international guests.
+
+The number rides in the existing Responses paragraph as `Contact number: ...` under the
+rehearsal section. **No sixth question was added to the Google Form**, so the entry IDs are
+unchanged.
 
 ### Previewing without going live
 
@@ -235,11 +271,48 @@ it matters again if the RSVP is ever closed and reopened.
 
 ## Outstanding requests
 
-- **RSVP submission self-test** — the next task. See "Verifying submissions still work".
-- **Things to Do map** (Travel section) — the *map* itself is still outstanding. The
-  section is no longer "COMING SOON": it now holds Sophie's "Our Favorite Spots" list
-  (ten places, `.favorites` in `sections.css`), added 2026-09-02. A map alongside it was
-  Jake's 2026-08-11 request and has not been built.
+- *(nothing outstanding — the self-test and the Things to Do map both shipped 2026-09-02.)*
+
+## The Things to Do map
+
+Built 2026-09-02, replacing the "Our Favorite Spots" list that shipped earlier the same
+day. `js/map.js` was already written and needed no changes — it reads `data-name` and
+`data-desc` off each `.map-marker` into the tooltip, one open at a time, with keyboard and
+click-outside handling.
+
+**Nine spots.** Bluefin was dropped at Jake's request. Hotel ZaZa is drawn as a rosewater
+ring rather than a star, because it is the venue and not a recommendation.
+
+**Marker positions are generated, not hand-placed.** They come from the real street
+addresses, projected, then put through two deliberate distortions:
+
+1. **Radial compression.** Anything within 0.7 km of downtown is left exactly where it
+   falls, so spots guests will walk between stay true to each other. Beyond that, distance
+   is raised to the power 0.30 — Kerbey Lane is really 4.6 km north and is drawn at about
+   1.2 km. Without this, the downtown six collapse into an unclickable blob.
+2. **Vertical gap collapse.** Empty vertical runs longer than 52 units are squeezed to 52,
+   which removed the dead band between Bob Bullock and downtown and took the canvas from
+   400x516 to 400x299.
+
+Nothing is placed *wrongly* — north is north, east is east. Distance just compresses the
+further out you go, the way a transit map does. **If you add or move a spot, recompute the
+whole set rather than nudging one marker**, or it will disagree with its neighbours.
+
+Roads and the river are hand-placed in final coordinates, *not* projected: running real
+geometry through the compression left them visibly kinked. They orient the eye and are not
+survey-accurate.
+
+Two things worth knowing if this comes up again:
+
+- Bluefin was doing structural work. It sat 4.5 km south, almost exactly balancing Kerbey
+  Lane 4.5 km north, which is why the first draft framed as a clean square. Removing it is
+  what made the compression necessary.
+- Péché is at 208 W 4th, which is between Colorado and Lavaca — **east** of Lavaca, so east
+  of ZaZa. An earlier draft had it a block too far west. Jake caught it.
+
+A cluster-and-zoom interaction was designed and then dropped: after compression the closest
+two stars sit 36 units apart, so everything is directly clickable and the zoom solved a
+problem that no longer existed.
 
 ## Content rules
 

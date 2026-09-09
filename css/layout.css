@@ -969,6 +969,28 @@
     border-radius: var(--radius-sm);
 }
 
+/*
+ * Welcome Party phone number. Sits below the accept/decline cards and is
+ * revealed by rsvp.js only once somebody in the household accepts, so it
+ * needs its own top rule rather than relying on the card spacing above.
+ */
+.rsvp__rehearsal-phone {
+    margin-top: var(--space-5);
+    margin-bottom: 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--border-subtle);
+}
+
+/* The label is a full sentence here rather than a two-word field name, so
+   it reads as prose instead of shouting in uppercase like the others. */
+.rsvp__rehearsal-phone .form__label {
+    text-transform: none;
+    letter-spacing: var(--tracking-normal);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+    color: var(--text-secondary);
+}
+
 .rsvp__rehearsal-title {
     font-family: var(--font-display);
     font-size: var(--text-2xl);

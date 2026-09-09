@@ -794,9 +794,50 @@
                     </div>
                 `;
             }).join('')}
+
+            <!--
+                One phone number for the whole household, revealed as soon
+                as anybody accepts and hidden again if everyone backs out.
+            -->
+            <div id="rehearsal-phone-group" class="form__group rsvp__rehearsal-phone" hidden>
+                <label for="rehearsal-phone" class="form__label">
+                    ${escapeHtml(CONFIG.rehearsal.phone.label)}
+                </label>
+                <input type="tel"
+                       id="rehearsal-phone"
+                       name="rehearsal-phone"
+                       class="form__input"
+                       autocomplete="tel"
+                       inputmode="tel"
+                       placeholder="${escapeHtml(CONFIG.rehearsal.phone.placeholder)}">
+            </div>
         `;
 
         elements.rehearsalBlock.hidden = false;
+
+        // Reveal the phone field on the first acceptance, and take it away
+        // again if every invitee ends up declining — otherwise a household
+        // that changed its mind would be blocked by a field it can't see
+        // the point of.
+        const phoneGroup = document.getElementById('rehearsal-phone-group');
+
+        function syncPhoneField() {
+            const anyAccepting = invited.some(member => {
+                const index = household.members.indexOf(member);
+                return document.getElementById(`rehearsal-${index}-yes`)?.checked;
+            });
+            if (phoneGroup) phoneGroup.hidden = !anyAccepting;
+        }
+
+        invited.forEach(member => {
+            const index = household.members.indexOf(member);
+            document.getElementById(`rehearsal-${index}-yes`)
+                ?.addEventListener('change', syncPhoneField);
+            document.getElementById(`rehearsal-${index}-no`)
+                ?.addEventListener('change', syncPhoneField);
+        });
+
+        syncPhoneField();
     }
 
     // ----------------------------------------
@@ -846,6 +887,17 @@
                 showFormError(
                     `Please answer the rehearsal dinner question for ${namesOf(needsRehearsal)}.`
                 );
+                return;
+            }
+
+            // If anybody is coming to the Welcome Party we need a number
+            // to reach the household on. Nobody accepting means the field
+            // is hidden, so it is not required.
+            const anyRehearsalAccepting = responses.some(r => r.rehearsalAttending === true);
+            if (anyRehearsalAccepting &&
+                phoneDigitCount(collectRehearsalPhone()) < CONFIG.rehearsal.phone.minDigits) {
+                showFormError(CONFIG.rehearsal.phone.error);
+                document.getElementById('rehearsal-phone')?.focus();
                 return;
             }
 
@@ -919,6 +971,23 @@
         });
     }
 
+    /**
+     * The Welcome Party phone number. One per household, so it is read
+     * straight off the single input rather than per member.
+     */
+    function collectRehearsalPhone() {
+        return document.getElementById('rehearsal-phone')?.value.trim() || '';
+    }
+
+    /**
+     * Count only the digits, so "(512) 555-0134", "512-555-0134" and
+     * "+1 512 555 0134" all pass. We are checking that something real was
+     * typed, not validating a format.
+     */
+    function phoneDigitCount(value) {
+        return (String(value).match(/\d/g) || []).length;
+    }
+
     async function submitRSVP(responses) {
         const note = elements.noteInput?.value.trim() || '';
 
@@ -926,7 +995,8 @@
             householdId: state.currentHousehold.id,
             householdName: state.currentHousehold.name,
             responses: responses,
-            summary: buildSummary(responses),
+            rehearsalPhone: collectRehearsalPhone(),
+            summary: buildSummary(responses, collectRehearsalPhone()),
             note: note,
             submittedAt: new Date().toISOString()
         };
@@ -948,7 +1018,7 @@
      * This is what actually lands in the responses spreadsheet, so it is
      * written to be read by a human at a glance rather than parsed.
      */
-    function buildSummary(responses) {
+    function buildSummary(responses, rehearsalPhone) {
         const mealLabel = value => {
             const option = CONFIG.mealOptions.find(o => o.value === value);
             return option ? option.label : value;
@@ -975,6 +1045,10 @@
             rehearsal.forEach(r => {
                 lines.push(`${r.label} — ${r.rehearsalAttending ? 'Accepts' : 'Declines'}`);
             });
+            // Only collected when somebody accepted, so only shown then.
+            if (rehearsalPhone) {
+                lines.push(`Contact number: ${rehearsalPhone}`);
+            }
         }
 
         return lines.join('\n');
