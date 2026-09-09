@@ -856,6 +856,31 @@
     padding-bottom: var(--space-5);
 }
 
+/*
+ * Links inside an answer — currently just the shared photo album.
+ *
+ * These were effectively invisible. reset.css sets
+ * `a:not([class]) { color: currentColor }`, which out-specifies the
+ * `a { color: var(--color-link) }` in typography.css, so an unclassed link
+ * rendered as plain body text and only revealed itself on hover. Rather than
+ * relying on hover to announce it, the link now sits permanently in the
+ * hover colour and carries an underline.
+ *
+ * The hover rule repeats the same colour on purpose: the intent is that
+ * nothing changes when the pointer arrives.
+ */
+.faq__answer a {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+}
+
+.faq__answer a:hover,
+.faq__answer a:focus {
+    color: var(--color-link-hover);
+}
+
 /* ----------------------------------------
  * REGISTRY UPDATES
  * Single link, cleaner layout
