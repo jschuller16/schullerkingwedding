@@ -166,10 +166,14 @@ const CONFIG = {
     // The `value` is what gets recorded in the spreadsheet, the `label`
     // is what guests see. Keep the empty first option.
     // Adults only — children are handled by childMeal below.
+    // `note` is an optional aside shown after the dish in the dropdown. It
+    // deliberately does NOT get uppercased with the dish name, and it never
+    // reaches the responses spreadsheet — `label` alone is what gets
+    // recorded, so the sheet stays clean to read.
     mealOptions: [
         { value: '', label: 'Select your entrée' },
-        { value: 'short-rib', label: 'Red wine-braised short rib' },
-        { value: 'ravioli', label: 'Porcini & truffle mezzelune ravioli' }
+        { value: 'short-rib', label: 'Red wine-braised short rib', note: "(Jake's favorite)" },
+        { value: 'ravioli', label: 'Porcini & truffle mezzelune ravioli', note: "(Soph's favorite)" }
     ],
 
     // ----------------------------------------
