@@ -661,8 +661,18 @@
                             }
                             // Uppercase BEFORE escaping — uppercasing an
                             // escaped "&amp;" would produce "&AMP;".
+                            //
+                            // The note ("(Jake's favorite)") keeps its own
+                            // casing, so only the dish name is uppercased.
+                            // The gap is two NO-BREAK SPACES rather than two
+                            // ordinary ones because HTML collapses runs of
+                            // whitespace down to a single space, and a plain
+                            // "  " here would render as "  ".
+                            const text = opt.note
+                                ? `${opt.label.toUpperCase()}  ${opt.note}`
+                                : opt.label.toUpperCase();
                             return `<option value="${escapeHtml(opt.value)}">` +
-                                   `${escapeHtml(opt.label.toUpperCase())}</option>`;
+                                   `${escapeHtml(text)}</option>`;
                         }).join('')}
                     </select>
                 </div>
